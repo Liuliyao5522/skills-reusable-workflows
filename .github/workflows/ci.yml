@@ -13,8 +13,6 @@ jobs:
     uses: ./.github/workflows/reusable-node-quality.yml
     with:
       node-version: 24
-    # 👇 加上这一行，允许 quality 任务失败，不阻塞后续流程
-    continue-on-error: true
 
   github-pages:
     name: Deploy to GitHub Pages
@@ -43,4 +41,4 @@ jobs:
             | Item | Link |
             | --- | --- |
             | 🌐 GitHub Pages URL | ${{ needs.github-pages.outputs.page_url }} |
-            | 🧾 Workflow logs | https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            | 🧾 Workflow logs | https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} |
