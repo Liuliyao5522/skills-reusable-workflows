@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   quality:
+    name: Quality Checks (Lint+Test+E2E)
     uses: ./.github/workflows/reusable-node-quality.yml
     with:
       node-version: 24
@@ -26,12 +27,13 @@ jobs:
       id-token: write
 
   comment:
-    name: Comment on PR
+    name: Comment PR with Pages URL
     if: always()
-    needs: github-pages
+    needs: [quality, github-pages]
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
+      contents: read
     steps:
       - name: Comment with Pages URL
         uses: GrantBirki/comment@v2.1.1
